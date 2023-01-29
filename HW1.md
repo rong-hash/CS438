@@ -70,7 +70,7 @@ manner and that the processing delay is 0.
 
     (If more accurate, total should count the propagation delay of first packet from S to B and from A to S, and count the transmission delay of first packet from A to S, which is 10ms + 8ms + 80ms = 98ms, so the final result = 50.098s)
 
-    Average thoughput = 16Bps
+    Average thoughput = **16Bps**
 
 6. Suppose that, after B receives a packet, it sends a short (100 byte) acknowledgment
 packet to A. A waits for this acknowledgment before sending the next packet. How
@@ -82,7 +82,7 @@ long will it take to send a 100 MB file in this setting? What is the average thr
 
     Total packets = 100MB / 100kB = 1000
 
-    Total time = 148.148ms * 1000 = 148148ms = 148.148s
+    Total time = 148.148ms * 1000 = 148148ms = **148.148s**s
 
 ## Question 2: Layering
 Give a real-world example of a system / set of protocols that can be explained using layering.

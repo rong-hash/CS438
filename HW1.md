@@ -82,7 +82,7 @@ long will it take to send a 100 MB file in this setting? What is the average thr
 
     Total packets = 100MB / 100kB = 1000
 
-    Total time = 148.148ms * 1000 = 148148ms = **148.148s**s
+    Total time = 148.148ms * 1000 = 148148ms = **148.148s**
 
 ## Question 2: Layering
 Give a real-world example of a system / set of protocols that can be explained using layering.

@@ -65,15 +65,21 @@ manner and that the processing delay is 0.
 
     where $ R_{as} $ and $ R_{bs} $ is the rate of pipe that can carry bits (bps).
 
-    So the total time = 100MB / 16Bbps = **50s**
+    So the total time = 100MB / 16Mbps = **50s**
 
     (If more accurate, total should count the propagation delay of first packet from S to B and from A to S, and count the transmission delay of first packet from A to S, which is 10ms + 8ms + 80ms = 98ms, so the final result = 50.098s)
 
-    Average thoughput = **16Bps**
+    Average thoughput = **16Mbps**
 
     If we want to calculate the time more precisely, then we should consider the time of transmission of first packet. 
 
-    When the first packet 
+    When the 100 MB packets output from A, 
+
+    there are 100MB - (100MB/ 80Mbps - 100KB/80Mbps) * 16Mbps = 640.16Mbits
+    
+    so total time should be 7ms + 100MB / 80Mbps + 640.16Mbits / 16Mbps + 80ms = 50.098s
+
+    which means average throughput = 15.97Mbps
 
 6. Suppose that, after B receives a packet, it sends a short (100 byte) acknowledgment
 packet to A. A waits for this acknowledgment before sending the next packet. How

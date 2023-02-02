@@ -44,9 +44,8 @@ manner and that the processing delay is 0.
 
     So increasing data per second, dps = 80Mb - 16Mb = 8MB = 8e6 Bytes
 
-    Full time = 900kB / 8MB = **0.1125s**
+    Full time = 8ms + 100kB / 80Mbps +  (900kB - 100kB) / 8MB = **0.118s**
 
-    (if counting the time from the first bit sent from A, then we should add a propagation delay, full time = 0.1125s + 8ms = 0.1205s)
 
 4. What will be the queueing delay encountered by the last packet to enter the buffer?
 
@@ -72,17 +71,27 @@ manner and that the processing delay is 0.
 
     Average thoughput = **16Bps**
 
+    If we want to calculate the time more precisely, then we should consider the time of transmission of first packet. 
+
+    When the first packet 
+
 6. Suppose that, after B receives a packet, it sends a short (100 byte) acknowledgment
 packet to A. A waits for this acknowledgment before sending the next packet. How
 long will it take to send a 100 MB file in this setting? What is the average throughput?
 
     *Answer*:
 
-    Time for one packet = time_packet + time_acknowledgement = 148ms + 148ms / 1k = 148.148ms, (because acknowledge is 1000 times smaller as one packet)
+    Time for one packet = time_packet + time_acknowledgement
+
+    time_packet = 148ms
+
+    time_acknowledgement = 8ms + 80ms + 0.06ms = 88.06ms
 
     Total packets = 100MB / 100kB = 1000
 
-    Total time = 148.148ms * 1000 = 148148ms = **148.148s**
+    Total time = 236.06ms * 1000 = **236.06s**
+
+    Throughput = 100MB / 236.06 = 3.39Mbps
 
 ## Question 2: Layering
 Give a real-world example of a system / set of protocols that can be explained using layering.
@@ -137,7 +146,7 @@ would they use? For this part, assume that no other circuits are active.
 
     ![Q3a2](img/H1Q3a2.png)
 
-    As shown in the image, it can support 7 circuits.
+    As shown in the image, it can support 8 circuits.
 
     Links used in the circuits is also shown in the image.
 

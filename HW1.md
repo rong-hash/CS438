@@ -206,3 +206,36 @@ fairly among them. What is the average bandwidth you will receive from the link?
     So 
 
     $$ AvgBand =  P_{NoShare} \times 600 + P_{OneShare} \times 300 + P_{TwoShare} \times 200 = 350 $$
+
+
+**Question 5**
+
+each image:0.2s
+RTT:0.1s
+1. non-persistent HTTP response time = 2RTT+ file transmission time 
+(2*RTT+0.2)*50 = 20s
+
+2. persistent HTTP response time = RTT 
+RTT + (1*RTT+0.2)*50= 15.1s
+
+3. pipeline 
+2*RTT + 0.2*50 = 10.2s 
+
+
+**Question 6**
+1. 6123424byte 
+2. 10.194.93.186 (3244 byte)
+172.217.5.14 (1124 byte)
+3. Src port: 4079
+Dst port 443, 
+Quick udp internet connection, 
+4. Google Servers, United States (US)
+5. User Datagram Protocol, Domain Name System
+
+
+**(7)**
+1. The second one's 14, 15, 16, 17, 18, 19, 21 hop is transoceanic link.
+2. 1st one: 4.414e-3s*2e^8m/s/2 = 4.414e5m
+
+    2nd one: 206.567e-3*2e8m/s/2 = 2.06567e7m
+3. Because the previous environment is more crowded and busy, the latter one is more free, the path to reach a server at different time is different, routers' rate to handle data at different time is different. 

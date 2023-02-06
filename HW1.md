@@ -233,7 +233,7 @@ RTT + (1 * RTT+0.2) * 50= 15.1s
 
     Quick udp internet connection, Transport Layer Security
 4. Google Servers, United States (US)
-5. User Datagram Protocol, Domain Name System
+5. Hypertex Transfer Protocal, Domain Name System
 
 
 ## Question 7

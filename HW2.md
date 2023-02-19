@@ -56,9 +56,26 @@ user can refer to the dig documentation to understand how to utilize it.
 ## Question 2
 *Question*
 
+Think about spreading a F-bit file among N peers using a client-server structure. Let the
+server have an maximum upload capacity µs, and each client c has a download capacity
+dc. Let $d_{min} = min_c d_c$ be the minimum download rate. Assume that the server can serve
+multiple clients simultaneously and fluidly set the rate for each client, rc, as long as $∀_cr_c ≤ d_c$
+and $\sum _cr_c ≤ µ_s$.
 
 
-*Answer*: 
+1. Suppose that $µ_s/N ≤ d_{min}$. How would you set the rates rc so that the file is fully
+distributed to all clients in a minimum time? (i.e., you are minimizing the time that
+the slowest client receives the file.) What would the distribution time be?
+2. Suppose now that $µs/N > d_{min}$. How would you set the rates rc now to fully distribute
+the file to the clients in a minimum time? And what would this time be?
+3. Consider a concrete example with 5 clients with $d_c$ = {06, 12, 18, 24, 30} and a server
+upload capacity of $µ_s$ = 30. How would you set the rates to get the smallest average
+download time without increasing the total distribution time from the previous part?
+
+*Answer*:   
+1.  It would be $µ_s/N$. If we set $r_c = µ_s/N$$, $∀_cr_c ≤ d_c$ is satisfied because $µ_s/N ≤ dmin$. Also, if we sum up all the $r_c$, we get $µ_s$, $\sum _cr_c ≤ µ_s$ is true. The time is $F/r_c = F * N/ µ_s$
+2.  It would be $d_{min}$. The time is $F/d_{min}$
+3.  Caculate $µ_s/N = 6$, we get that $µ_s/N \le d_{min}$, so we set $r_c = 6$. 
 
     
 ## Question 3
@@ -98,10 +115,47 @@ when he was not contributing?
 ## Question 4
 *Question*
 
-
+Consider a distributed hash table (DHT) with 8 peers and an 8-bit hash ID that operates in
+a circular fashion. The peers are represented by the values {12, 16, 26, 52, 73, 88, 104, 124}.
+The key-value pairs are assigned to the peer that immediately follows the key in the circular
+DHT.
+1. What is hashing ID space?
+2. In which peer is the key-value pair stored in the following circumstances:
+(a) The key has a value of 19?  
+(b) The key has a value of 125?
+3. If peer 88 initiates a search for the value associated with key 23, as shown in the
+illustration on the left, how many messages will be necessary to complete the query?
+This includes the message that initiates the query and the message that returns the
+value. Provide an explanation for the answer?
+4. Assume each peer is given one cord and is now aware of the next two successors as
+shown in the right figure above. If peer 12 starts a query for the value associated
+with key 111, then how many messages (including the query message and return value
+message) are required to resolve this query? Explain why?
+5. What is the maximum number of messages to resolve any query if
+3
+(a) each peer is aware of its immediate successor as shown in the left figure above?
+(b) each peer is given one cord and is now aware of the next two successors?
+6. Given that each peer is provided with one cord, can you propose a new arrangement
+of the cords that would minimize the maximum number of messages needed to resolve
+any query? Draw a representation of the circular distributed hash table and provide
+an argument to support why your solution is effective
 
 *Answer*: 
-
+1. Since we have 8 bits, $2^8 = 256$, we get 256 IDs. 
+ID space is ${0,1,2,...,255}$, from 0 to 255. 
+2.  (a) key value = 19, assigned to peer 26
+        
+    (b) key value = 125, assigned to peer 12. 
+3. 88 is assigned to peer 88. 23 is assigned to peer 26. To get 23, it will initiate the query, search 104, 124, 12, 16, 26 and get returns value back. Totally 7 messages. 
+4. 111 is assigned to 124. The searching steps are 26, 73, 104 then 124. Inclduing the initiating and returning message, there are 6 messages totally. 
+5.  (a) 9 times. 
+        
+    (b) 6 times.
+6.  
+![avatar](hw2-img.png)  
+As it's shown by the figure, each key is assigned to the ones that's symmetric to it and that's how the maximum number of messages is minimized. At most 5 times of search is needed.   
+The followings are the reasons. 
+For each node, it can access to its successor and cord. The maximum number of search will cover all the nodes to reach the target key. Begin from one node and it can have direct access its successor, there are six nodes left that it cannot access, each node can have access to two other nodes. So searching the left six nodes require at most $6/2 = 3$ times, if everything is optimized. 
 
 ## Question 5
 *Question*
@@ -126,14 +180,22 @@ explain the reasons why there are no limitations.
 
 ## Question 6
 *Question*
-
+1. How can the maximum utilization of the network be calculated, when Alice is sending
+data to Bob using the stop-and-wait method, given that the bottleneck bandwidth is
+40 Mbps and the end-to-end delay is 25 ms, and each packet being sent is 1200 bytes
+with 32 bits reserved for the checksum and sequence number?
+2. How should Alice and Bob set their timeout value?
+3. What changes would you make to the protocols if the connection between Alice and
+Bob is ensured to not cause any packet damage?
+4. What would be the impact on performance of this change?
 
 
 *Answer*: 
 
-## Question 1
-*Question*
-
-
-
-*Answer*: 
+1. Utilization rate is 
+$ U = \frac{\frac{(L-L_reserved)}{R}}{RTT+L/R} = 4.76 e -3$
+2. If timeout value is too small, it will cause unnecessary resending and if it's too big, it will let client to wait for a long time. The total delay is $RTT+D_{tans} = 50.24ms$. It must be greater than 50.24ms. 
+3. Use pipelined protocols, sender allows multiple, “in-flight”, yet-to-be-acknowledged packages. 
+4. Utilization rate will be increased. 
+$U_{sender} = \frac{L/R}{RTT+L/R} $ originally but now it's 
+$U_{sender} = \frac{N*L/R}{RTT+L/R} $ If N packages are sent simultaneously. 

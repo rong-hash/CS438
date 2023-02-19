@@ -73,9 +73,16 @@ upload capacity of $µ_s$ = 30. How would you set the rates to get the smallest 
 download time without increasing the total distribution time from the previous part?
 
 *Answer*:   
-1.  It would be $µ_s/N$. If we set $r_c = µ_s/N$$, $∀_cr_c ≤ d_c$ is satisfied because $µ_s/N ≤ dmin$. Also, if we sum up all the $r_c$, we get $µ_s$, $\sum _cr_c ≤ µ_s$ is true. The time is $F/r_c = F * N/ µ_s$
+1.  It would be $µ_s/N$. If we set $r_c = µ_s/N$, $∀_cr_c ≤ d_c$ is satisfied because $µ_s/N ≤ dmin$. Also, if we sum up all the $r_c$, we get $µ_s$, $\sum _cr_c ≤ µ_s$ is true. The time is $F/r_c = F * N/ µ_s$
 2.  It would be $d_{min}$. The time is $F/d_{min}$
-3.  Caculate $µ_s/N = 6$, we get that $µ_s/N \le d_{min}$, so we set $r_c = 6$. 
+3.  
+| time     | dc = 6 |dc = 12| dc = 18|dc = 24|dc = 30|
+| ------ | ------- |--------|---------|--------|--------|
+| 0~1.25    | rc = 6 | rc = 0 | rc = 0  | rc = 0 | rc = 24|
+| 1.25~3.75| rc = 6  | rc = 12| rc = 12 | rc =  0 |rc = 0(finished)| 
+| 3.75~5| rc = 6  | rc = 0(finished)| rc = 0(finished) | rc =  24 |rc = 0|
+$t_{avg} = 3.75s$
+            
 
     
 ## Question 3
@@ -146,14 +153,14 @@ ID space is ${0,1,2,...,255}$, from 0 to 255.
 2.  (a) key value = 19, assigned to peer 26
         
     (b) key value = 125, assigned to peer 12. 
-3. 88 is assigned to peer 88. 23 is assigned to peer 26. To get 23, it will initiate the query, search 104, 124, 12, 16, 26 and get returns value back. Totally 7 messages. 
-4. 111 is assigned to 124. The searching steps are 26, 73, 104 then 124. Inclduing the initiating and returning message, there are 6 messages totally. 
-5.  (a) 9 times. 
+3. 88 is assigned to peer 88. 23 is assigned to peer 26. To get 23, it will  search 104, 124, 12, 16, 26 and get returns value back. Totally 6 messages. 
+4. 111 is assigned to 124. The searching steps are 26, 73, 104 then 124. Inclduing returning message, there are 5 messages totally. 
+5.  (a) 8 times. 
         
-    (b) 6 times.
+    (b) 5 times.
 6.  
 ![avatar](hw2-img.png)  
-As it's shown by the figure, each key is assigned to the ones that's symmetric to it and that's how the maximum number of messages is minimized. At most 5 times of search is needed.   
+As it's shown by the figure, each key is assigned to the ones that's symmetric to it and that's how the maximum number of messages is minimized. At most 4 times of search is needed.   
 The followings are the reasons. 
 For each node, it can access to its successor and cord. The maximum number of search will cover all the nodes to reach the target key. Begin from one node and it can have direct access its successor, there are six nodes left that it cannot access, each node can have access to two other nodes. So searching the left six nodes require at most $6/2 = 3$ times, if everything is optimized. 
 
@@ -193,9 +200,8 @@ Bob is ensured to not cause any packet damage?
 *Answer*: 
 
 1. Utilization rate is 
-$ U = \frac{\frac{(L-L_reserved)}{R}}{RTT+L/R} = 4.76 e -3$
-2. If timeout value is too small, it will cause unnecessary resending and if it's too big, it will let client to wait for a long time. The total delay is $RTT+D_{tans} = 50.24ms$. It must be greater than 50.24ms. 
-3. Use pipelined protocols, sender allows multiple, “in-flight”, yet-to-be-acknowledged packages. 
-4. Utilization rate will be increased. 
-$U_{sender} = \frac{L/R}{RTT+L/R} $ originally but now it's 
-$U_{sender} = \frac{N*L/R}{RTT+L/R} $ If N packages are sent simultaneously. 
+$ U = \frac{\frac{L}{R}}{RTT+L/R} = 4.78 e -3$
+2. If timeout value is too small, it will cause unnecessary resending and if it's too big, it will let client to wait for a long time. The total delay is $RTT+L/R = 50.24ms$. It must be greater than 50.24ms. 
+3. (1) Set timeout value: if the sender doesn't receive the ACK and wait for a timeout value period, it should resend package. 
+(2) Add UDP check sum to detect “errors” in transmitted segment, sender puts checksum value into UDP checksum field, reciever check if computed checksum equals checksum field value. 
+4. More time is needed but it's more reliable

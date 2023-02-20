@@ -54,11 +54,11 @@ user can refer to the dig documentation to understand how to utilize it.
 2. The recursive query would probably be quicker than completing each iterative step individually because the resolver would take care of everything for you, including issuing the required DNS queries, monitoring referral answers, and returning the final result. This can lead to fewer network round-trips, quicker response times, and a reduction in the amount of work.
 
 3.  
-    - resolver.illinois.edu
-    - 172.17.112.1
-    - 1178 msec
-    - rtt 0.401 msec
-    - 803 sec
+    - b.in-addr-servers.arpa. nstld.iana.org.
+    - 172.25.96.1
+    - 30 msec
+    - rtt 27 msec
+    - 2371 sec
 
 4.  Speed: Compared to TCP, UDP is a quicker and easier protocol. UDP is an excellent fit for the DNS use case because DNS inquiries are frequently brief and only call for one request and one response.
 

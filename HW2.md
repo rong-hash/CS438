@@ -29,18 +29,36 @@ user can refer to the dig documentation to understand how to utilize it.
 
 
 *Answer*: 
-1.  - eecs.mit.edu
-    - 35.231.163.5
-    - 91 msec
-    - rtt min/avg/max/mdev = 31.128/37.290/48.335/5.604 ms
-    - The same time as RTT, 37.290ms (avg)
+
+1.  
+    -    
+         - root-servers.net
+         - 198.97.190.53
+         - 91 msec
+         - rtt min/avg/max/mdev = 31.128/37.290/48.335/5.604 ms
+         - 172800 sec
+
+    - 
+        - edu-servers.net
+        - 192.5.6.30
+        - 15 msec
+        - rtt min/avg/max/mdev = 7.261/9.818/16.192/3.400 ms
+        - 172800 sec
+    - 
+      - usw2.akam.net
+      - 184.26.161.64
+      - 299 msec
+      - rtt min/avg/max/mdev = 245.777/270.771/342.791/36.417 ms
+      - 1800 sec
+
 2. The recursive query would probably be quicker than completing each iterative step individually because the resolver would take care of everything for you, including issuing the required DNS queries, monitoring referral answers, and returning the final result. This can lead to fewer network round-trips, quicker response times, and a reduction in the amount of work.
 
-3.  - eecs.mit.edu
-    - 35.231.163.5
-    - 27 msec
-    - rtt min/avg/max/mdev = 35.024/49.701/102.223/20.766 ms
-    - The same time as RTT, 49.701ms (avg)
+3.  
+    - resolver.illinois.edu
+    - 172.17.112.1
+    - 1178 msec
+    - rtt 0.401 msec
+    - 803 sec
 
 4.  Speed: Compared to TCP, UDP is a quicker and easier protocol. UDP is an excellent fit for the DNS use case because DNS inquiries are frequently brief and only call for one request and one response.
 
@@ -117,7 +135,7 @@ when he was not contributing?
 
 2. AvgRate = (80Mbps * 30 - 18.46Mbps) / 30 = 79.38 Mbps
 3. Download Speed = 80 / 5 / 27 * 30 * 2 = 35.56 Mbps
-4. Yes, he will. Current Avg Speed = 80 Mbps * 2 = 160 Mbps
+4. No, it won't because 2 clients share the same uploading bandwidth, so the uploading speed of them is 40 Mbps, which means it is hard for them to get in the top 4 peers of other clients. So the downloading speed is almost the same as question 3.
 
 ## Question 4
 *Question*
@@ -148,7 +166,7 @@ any query? Draw a representation of the circular distributed hash table and prov
 an argument to support why your solution is effective
 
 *Answer*: 
-1. Since we have 8 bits, $2^8 = 256$, we get 256 IDs. 
+1. Since we have 8 bits, $2^8 = 256$, we get 256 IDs, from 0 to 255.
 ID space is ${0,1,2,...,255}$, from 0 to 255. 
 2.  (a) key value = 19, assigned to peer 26
         

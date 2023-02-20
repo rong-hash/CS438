@@ -96,10 +96,9 @@ download time without increasing the total distribution time from the previous p
 3.  
 | time     | dc = 6 |dc = 12| dc = 18|dc = 24|dc = 30|
 | ------ | ------- |--------|---------|--------|--------|
-| 0~1.25    | rc = 6 | rc = 0 | rc = 0  | rc = 0 | rc = 24|
-| 1.25~3.75| rc = 6  | rc = 12| rc = 12 | rc =  0 |rc = 0(finished)| 
-| 3.75~5| rc = 6  | rc = 0(finished)| rc = 0(finished) | rc =  24 |rc = 0|
-$t_{avg} = 3.75s$
+| stage1    | rc = 6 | rc = 0 | rc = 0  | rc = 0 | rc = 24|
+|stage2| rc = 6  | rc = 12| rc = 12 | rc =  0 |rc = 0(finished)| 
+| stage3| rc = 6  | rc = 0(finished)| rc = 0(finished) | rc =  24 |rc = 0|
             
 
     

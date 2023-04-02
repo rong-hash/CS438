@@ -24,9 +24,32 @@ We can find out when $\alpha$ is bigger, then the convergence is slower, when it
 
 ---
 ## Question 2
-*Answer 2*: 
+1. 
+
+|Time| FIFO|| Highest Priority || Round Robin ||WFQ ||
+|--|--|--|--|--|--|--|--|--|
+||Packet|Delay|Packet|Delay|Packet|Delay|Packet|Delay|
+|1|1|1|1|1|1|1|1|1|
+|2|2|2     |3|1   |2|2  |   4| 1|
+|3|3|2     |2|3   |4|2  |    2| 3|
+|4|4|3     |5|1   |3|3  |    3| 3|
+|5|6|3     |7|2   |6|3  |   6|3|
+|6|5|3     |9|1   |5|3  |   9|1|
+|7|7|4     |4|6   |7|4  |    7|4|
+|8|9|3     |6|6   |8|3  |    10|1|
+|9|8|4     |11|1  |11|1 |   5|6|
+|10|10|3   |8|5   |9|5  |   12|2|
+|11|11|3   |10|4  |10|4 |   8|6|
+|12|12|4   |12|4  |12|4 |  11|4|
 
 
+2. Delay    
+    FIFO: 2.9167  
+    HP: 2.9167  (low priority: 1.167 high priority: 4.667)
+    RR: 2.9167  (class 1: 3.289 class 2: 2.4)
+    WFQ: 2.9167 (class 0: 2.25 class 1: 1.75 class 2: 4.75)
+3. The average delays for them are the same. 
+Class in HP with higher priority will have smaller delay and class in WFQ with higher weight tend to have smaller delay. 
 ---
 ## Question 3
 ### *Answer 1*: 
@@ -75,11 +98,18 @@ C: **200.20.15.101**00000/27 = 200.20.15.160/27
 
 ---
 ## Question 4
-*Question*
+1. (1)Process runing on the host computer join the network and find a server by sending DHCP discover packet.   
+(2)The sever reponds with DHCP offer packet.    
+(3)Then host sends DHCP request     
+(4)Sever send DHCP ACK back.        
+Host gets the IP address from sever.  
+2. Yes, it's possible. Their private address can be translated to the same IP using NAT.    
+3. IPv6 is 128 bits long and will provide larger IP address space. IPv6 can be global dedicated so it can get rid of NAT. 
+4. IPv6 can still be converted to IPv4 using tunneling and continue using NAT service. NAT provides security, devices inside local net not explicitly addressable, visible by outside world (a security plus). 
 
 
 
-*Answer*: 
+
 
 ---
 
@@ -220,7 +250,21 @@ D | 1 | 10 | 0
 
 ---
 ## Question 6
-### *Answer*: 
+1.  
+    (a)   
+        d->a->c->e    
+        d->c->e     
+        d->e    
+    (b)     
+        d->a
+2.  
+Link State: Each node stores the cost to other edges. The needed space is $O(E)$.   
+Distance Vector: Each node stores distance vector to other nodes. Distance vector is $O(V)$, total cost is $O(V^2)$
+Path Vector: Advertise paths to different destination network prefixes. 
+$O(V^3)$
+
+space complexity: Link State < Distance Vector < Path Vector
+
 
 
 

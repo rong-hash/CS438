@@ -319,16 +319,25 @@ G |   D|   D|   F|   D|   F|   F|NA  |
     (a)   
         d->a->c->e    
         d->c->e     
+        d->b->e         
         d->e    
-    (b)     
-        d->a
+    (b)    
+        all the paths  
+        d->a    
+        d->c->a, d->e->a, d->b->a   
+        d->e->c->a, d->b->c->a, d->c->b->a, d->c->e->a, 
+        d->e->b->a, d->b->e->a  
+        d->b->e->c->a, d->b->c->e->a, d->c->b->e->a, d->c->e->b->a
+        d->e->b->c->a, d->e->c->b->a        
+        
 2.  
-Link State: Each node stores the cost to other edges. The needed space is $O(E)$.   
-Distance Vector: Each node stores distance vector to other nodes. Distance vector is $O(V)$, total cost is $O(V^2)$
-Path Vector: Advertise paths to different destination network prefixes. 
-$O(V^3)$
+Link State: Each node stores the least cost paths to all other nodes and the next hop in the least cost path.   
 
-space complexity: Link State < Distance Vector < Path Vector
+Distance Vector: Each node stores distance vector and cost to other nodes.      
+
+Path Vector: The alorigthm advertise paths to different destination network prefixes. So each node contains path vector for each destination. The entire path information is in the node. 
+
+space complexity: Distance Vector < Link State < Path vector
 
 
 

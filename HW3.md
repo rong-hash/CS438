@@ -39,8 +39,8 @@ We can find out when $\alpha$ is bigger, then the convergence is slower, when it
 |8|9|3     |6|6   |8|3  |    10|1|
 |9|8|4     |11|1  |11|1 |   5|6|
 |10|10|3   |8|5   |9|5  |   12|2|
-|11|11|3   |10|4  |10|4 |   8|6|
-|12|12|4   |12|4  |12|4 |  11|4|
+|11|11|3   |10|4  |12|3 |   8|6|
+|12|12|4   |12|4  |10|5 |  11|4|
 
 
 2. Delay    
@@ -322,22 +322,20 @@ G |   D|   D|   F|   D|   F|   F|NA  |
         d->b->e         
         d->e    
     (b)    
-        all the paths  
         d->a    
-        d->c->a, d->e->a, d->b->a   
-        d->e->c->a, d->b->c->a, d->c->b->a, d->c->e->a, 
-        d->e->b->a, d->b->e->a  
-        d->b->e->c->a, d->b->c->e->a, d->c->b->e->a, d->c->e->b->a
-        d->e->b->c->a, d->e->c->b->a        
+        d->c->a     
+        d->e->c->a      
+        d->b->e->c->a   
         
 2.  
-Link State: Each node stores the least cost paths to all other nodes and the next hop in the least cost path.   
+Link State: Each node stores a detailed map to entire network topology   
 
-Distance Vector: Each node stores distance vector and cost to other nodes.      
+Distance Vector: Each node stores distance tp destinationa and neighbors 
+distance to destination. 
 
-Path Vector: The alorigthm advertise paths to different destination network prefixes. So each node contains path vector for each destination. The entire path information is in the node. 
+Path Vector: The alorigthm advertise paths to different destination network prefixes. So each node contains path vector to destination. The entire path information is in the node. 
 
-space complexity: Distance Vector < Link State < Path vector
+stored states: Distance Vector < Path Vector < Link State
 
 
 

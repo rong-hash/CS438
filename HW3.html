@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HW3.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="hw3">HW3</h1>
+<h2 id="question-1">Question 1</h2>
+<h3 id="answer-1"><em>Answer 1</em>:</h3>
+<pre class="hljs"><code><div>r0 = <span class="hljs-number">1</span>
+a = <span class="hljs-number">0.7</span>
+realrtt = <span class="hljs-number">0.5</span>
+finalrtt = r0
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">20</span>):
+    finalrtt = a * finalrtt + (<span class="hljs-number">1</span> - a) * realrtt
+finalrtt
+</div></code></pre>
+<p>With this python simulation code, we can get the RTT-timeout(20) = 0.5004</p>
+<h3 id="answer-2"><em>Answer 2</em>:</h3>
+<p>After changing $\alpha = 0.5$, RTT-timeout(20) = 0.5000</p>
+<p>After changing $\alpha = 0.95$, RTT-timeout(20) = 0.679242961204271</p>
+<p>We can find out when $\alpha$ is bigger, then the convergence is slower, when it is smaller, the convergence is faster, with the assumption that the real rtt never changes.</p>
+<hr>
+<h2 id="question-2">Question 2</h2>
+<ol>
+<li></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>FIFO</th>
+<th></th>
+<th>Highest Priority</th>
+<th></th>
+<th>Round Robin</th>
+<th></th>
+<th>WFQ</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Packet</td>
+<td>Delay</td>
+<td>Packet</td>
+<td>Delay</td>
+<td>Packet</td>
+<td>Delay</td>
+<td>Packet</td>
+<td>Delay</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>5</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6</td>
+<td>3</td>
+<td>7</td>
+<td>2</td>
+<td>6</td>
+<td>3</td>
+<td>6</td>
+<td>3</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5</td>
+<td>3</td>
+<td>9</td>
+<td>1</td>
+<td>5</td>
+<td>3</td>
+<td>9</td>
+<td>1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>4</td>
+<td>4</td>
+<td>6</td>
+<td>7</td>
+<td>4</td>
+<td>7</td>
+<td>4</td>
+</tr>
+<tr>
+<td>8</td>
+<td>9</td>
+<td>3</td>
+<td>6</td>
+<td>6</td>
+<td>8</td>
+<td>3</td>
+<td>10</td>
+<td>1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>8</td>
+<td>4</td>
+<td>11</td>
+<td>1</td>
+<td>11</td>
+<td>1</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>10</td>
+<td>10</td>
+<td>3</td>
+<td>8</td>
+<td>5</td>
+<td>9</td>
+<td>5</td>
+<td>12</td>
+<td>2</td>
+</tr>
+<tr>
+<td>11</td>
+<td>11</td>
+<td>3</td>
+<td>10</td>
+<td>4</td>
+<td>12</td>
+<td>3</td>
+<td>8</td>
+<td>6</td>
+</tr>
+<tr>
+<td>12</td>
+<td>12</td>
+<td>4</td>
+<td>12</td>
+<td>4</td>
+<td>10</td>
+<td>5</td>
+<td>11</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>Delay<br>
+FIFO: 2.9167<br>
+HP: 2.9167  (low priority: 1.167 high priority: 4.667)
+RR: 2.9167  (class 1: 3.289 class 2: 2.4)
+WFQ: 2.9167 (class 0: 2.25 class 1: 1.75 class 2: 4.75)</li>
+<li>The average delays for them are the same.
+Class in HP with higher priority will have smaller delay and class in WFQ with higher weight tend to have smaller delay.</li>
+</ol>
+<hr>
+<h2 id="question-3">Question 3</h2>
+<h3 id="answer-1"><em>Answer 1</em>:</h3>
+<p>For subnet A, 128 addresses suffice;</p>
+<p>For subnet B, 32 addresses suffice;</p>
+<p>For subnet C, 32 addresses suffice;</p>
+<p>So,</p>
+<p>A: <strong>200.20.15.0</strong>0000000/25 = 200.20.15.0/25</p>
+<p>B: <strong>200.20.15.100</strong>00000/27 = 200.20.15.128/27</p>
+<p>C: <strong>200.20.15.101</strong>00000/27 = 200.20.15.160/27</p>
+<h3 id="answer-2"><em>Answer 2</em>:</h3>
+<p>Here is the subnet relation:</p>
+<p><img src="img/IP_Relation.jpg" alt="relation"></p>
+<p><strong>Interface 1</strong> 128.174.240.0/20: <strong>128.174.1111</strong>0000.0/20, so $2^{12} - 2^{10} - 2^{10} - 2^{7} - 2^{3} = 1912$ address in total</p>
+<p><strong>R1</strong> 128.174.240.128/25: <strong>128.174.240.1</strong>0000000/25, so $2^{7} = 128$ addresses in total</p>
+<p><strong>R2</strong> 128.174.240.17: $1$ address in total</p>
+<p><strong>Interface 3</strong> 128.174.252.0/22: <strong>128.174.111111</strong>00.0/22, so $2^{10} = 1024$ addresses in total</p>
+<p><strong>R3</strong> 128.174.240.16/29: <strong>128.174.240.00010</strong>000, so $2^3 - 1 = 7$ addresses in total</p>
+<p><strong>Interface 2</strong> 128.174.248.0/22: <strong>128.174.111110</strong>00.0/22, so $2^{10} = 1024$ addresses in total</p>
+<h3 id="answer-3"><em>Answer 3</em>:</h3>
+<p>(a) R2</p>
+<p>(b) Interface 1</p>
+<p>(c) Interface 2</p>
+<p>(d) Interface 3</p>
+<p>(e) Interface 4</p>
+<p>(f) R3</p>
+<hr>
+<h2 id="question-4">Question 4</h2>
+<ol>
+<li>(1)Process runing on the host computer join the network and find a server by sending DHCP discover packet.<br>
+(2)The sever reponds with DHCP offer packet.<br>
+(3)Then host sends DHCP request<br>
+(4)Sever send DHCP ACK back.<br>
+Host gets the IP address from sever.</li>
+<li>Yes, it's possible. Their private address can be translated to the same IP using NAT.</li>
+<li>IPv6 is 128 bits long and will provide larger IP address space. IPv6 can be global dedicated so it can get rid of NAT.</li>
+<li>IPv6 can still be converted to IPv4 using tunneling and continue using NAT service. NAT provides security, devices inside local net not explicitly addressable, visible by outside world (a security plus).</li>
+</ol>
+<hr>
+<h2 id="question-5">Question 5</h2>
+<h3 id="answer-1"><em>Answer 1</em></h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>N</th>
+<th>D(A)</th>
+<th>D(B)</th>
+<th>D(C)</th>
+<th>D(D)</th>
+<th>D(F)</th>
+<th>D(G)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>E</td>
+<td>INF</td>
+<td>INF</td>
+<td>6, E</td>
+<td>4, E</td>
+<td>3, E</td>
+<td>INF</td>
+</tr>
+<tr>
+<td>1</td>
+<td>EF</td>
+<td>INF</td>
+<td>INF</td>
+<td>6, E</td>
+<td>4, E</td>
+<td></td>
+<td>5, F</td>
+</tr>
+<tr>
+<td>2</td>
+<td>EFD</td>
+<td>INF</td>
+<td>5, D</td>
+<td>6, E</td>
+<td></td>
+<td></td>
+<td>5, F</td>
+</tr>
+<tr>
+<td>3</td>
+<td>EFDB</td>
+<td>17, B</td>
+<td></td>
+<td>6, E</td>
+<td></td>
+<td></td>
+<td>5, F</td>
+</tr>
+<tr>
+<td>4</td>
+<td>EFDBG</td>
+<td>17, B</td>
+<td></td>
+<td>6, E</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>EFDBGC</td>
+<td>14, C</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>EFDBGCA</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="answer-2"><em>Answer 2</em></h3>
+<p>I only consider the route among B, D, E.</p>
+<p><img src="img/HW3_5.png" alt="IMG"></p>
+<h3 id="answer-3"><em>Answer 3</em></h3>
+<p>In each iteration, each row in the table means the distance between the destination node and that node in each of the node routing table; the first table is the distance table and the second table is the next hop table. I don't print all the entries in the routing table for the reason of making the homework clean, other wise I have to print 7 *  $7 \times 7$ tables in one iteration.</p>
+<p><strong>Before Change</strong></p>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0.0</td>
+<td>12.0</td>
+<td>8.0</td>
+<td>11.0</td>
+<td>14.0</td>
+<td>14.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>B</td>
+<td>12.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>C</td>
+<td>8.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>7.0</td>
+</tr>
+<tr>
+<td>D</td>
+<td>11.0</td>
+<td>1.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14.0</td>
+<td>5.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>F</td>
+<td>14.0</td>
+<td>4.0</td>
+<td>6.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>G</td>
+<td>15.0</td>
+<td>5.0</td>
+<td>7.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>2.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>None</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>None</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>D</td>
+<td>None</td>
+<td>D</td>
+<td>E</td>
+<td>D</td>
+<td>D</td>
+</tr>
+<tr>
+<td>D</td>
+<td>C</td>
+<td>B</td>
+<td>C</td>
+<td>None</td>
+<td>E</td>
+<td>F</td>
+<td>G</td>
+</tr>
+<tr>
+<td>E</td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>D</td>
+<td>None</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>E</td>
+<td>None</td>
+<td>G</td>
+</tr>
+<tr>
+<td>G</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>F</td>
+<td>F</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>After Change</strong> (C to D increase to 30)</p>
+<p>iteration  1</p>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0.0</td>
+<td>12.0</td>
+<td>8.0</td>
+<td>11.0</td>
+<td>14.0</td>
+<td>14.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>B</td>
+<td>12.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>C</td>
+<td>8.0</td>
+<td>9.0</td>
+<td>0.0</td>
+<td>10.0</td>
+<td>6.0</td>
+<td>9.0</td>
+<td>11.0</td>
+</tr>
+<tr>
+<td>D</td>
+<td>13.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14.0</td>
+<td>5.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>F</td>
+<td>14.0</td>
+<td>4.0</td>
+<td>6.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>G</td>
+<td>15.0</td>
+<td>5.0</td>
+<td>7.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>2.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>NA</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>NA</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>B</td>
+<td>NA</td>
+<td>B</td>
+<td>E</td>
+<td>E</td>
+<td>E</td>
+</tr>
+<tr>
+<td>D</td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+<td>NA</td>
+<td>E</td>
+<td>F</td>
+<td>G</td>
+</tr>
+<tr>
+<td>E</td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>D</td>
+<td>NA</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>E</td>
+<td>NA</td>
+<td>G</td>
+</tr>
+<tr>
+<td>G</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>F</td>
+<td>F</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<p>iteration  2</p>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0.0</td>
+<td>12.0</td>
+<td>8.0</td>
+<td>13.0</td>
+<td>14.0</td>
+<td>16.0</td>
+<td>17.0</td>
+</tr>
+<tr>
+<td>B</td>
+<td>12.0</td>
+<td>0.0</td>
+<td>6.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>C</td>
+<td>8.0</td>
+<td>9.0</td>
+<td>0.0</td>
+<td>10.0</td>
+<td>6.0</td>
+<td>9.0</td>
+<td>11.0</td>
+</tr>
+<tr>
+<td>D</td>
+<td>13.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14.0</td>
+<td>5.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>F</td>
+<td>16.0</td>
+<td>4.0</td>
+<td>8.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>G</td>
+<td>16.0</td>
+<td>5.0</td>
+<td>8.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>2.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>NA</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>B</td>
+</tr>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>NA</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>B</td>
+<td>NA</td>
+<td>B</td>
+<td>E</td>
+<td>E</td>
+<td>E</td>
+</tr>
+<tr>
+<td>D</td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+<td>NA</td>
+<td>E</td>
+<td>F</td>
+<td>G</td>
+</tr>
+<tr>
+<td>E</td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>D</td>
+<td>NA</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>E</td>
+<td>NA</td>
+<td>G</td>
+</tr>
+<tr>
+<td>G</td>
+<td>F</td>
+<td>D</td>
+<td>F</td>
+<td>D</td>
+<td>F</td>
+<td>F</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<p>iteration  3</p>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0.0</td>
+<td>12.0</td>
+<td>8.0</td>
+<td>13.0</td>
+<td>14.0</td>
+<td>16.0</td>
+<td>17.0</td>
+</tr>
+<tr>
+<td>B</td>
+<td>12.0</td>
+<td>0.0</td>
+<td>6.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>C</td>
+<td>8.0</td>
+<td>9.0</td>
+<td>0.0</td>
+<td>10.0</td>
+<td>6.0</td>
+<td>9.0</td>
+<td>11.0</td>
+</tr>
+<tr>
+<td>D</td>
+<td>13.0</td>
+<td>1.0</td>
+<td>7.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14.0</td>
+<td>5.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>F</td>
+<td>16.0</td>
+<td>4.0</td>
+<td>8.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>G</td>
+<td>17.0</td>
+<td>5.0</td>
+<td>9.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>2.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>NA</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>B</td>
+</tr>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>NA</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>B</td>
+<td>NA</td>
+<td>B</td>
+<td>E</td>
+<td>E</td>
+<td>E</td>
+</tr>
+<tr>
+<td>D</td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+<td>NA</td>
+<td>E</td>
+<td>F</td>
+<td>G</td>
+</tr>
+<tr>
+<td>E</td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>D</td>
+<td>NA</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>E</td>
+<td>NA</td>
+<td>G</td>
+</tr>
+<tr>
+<td>G</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>F</td>
+<td>F</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<p>iteration  4</p>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0.0</td>
+<td>12.0</td>
+<td>8.0</td>
+<td>13.0</td>
+<td>14.0</td>
+<td>16.0</td>
+<td>17.0</td>
+</tr>
+<tr>
+<td>B</td>
+<td>12.0</td>
+<td>0.0</td>
+<td>8.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>C</td>
+<td>8.0</td>
+<td>9.0</td>
+<td>0.0</td>
+<td>10.0</td>
+<td>6.0</td>
+<td>9.0</td>
+<td>11.0</td>
+</tr>
+<tr>
+<td>D</td>
+<td>13.0</td>
+<td>1.0</td>
+<td>7.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14.0</td>
+<td>5.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>F</td>
+<td>16.0</td>
+<td>4.0</td>
+<td>9.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>G</td>
+<td>17.0</td>
+<td>5.0</td>
+<td>10.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>2.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>NA</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>B</td>
+</tr>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>NA</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>B</td>
+<td>NA</td>
+<td>B</td>
+<td>E</td>
+<td>E</td>
+<td>E</td>
+</tr>
+<tr>
+<td>D</td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+<td>NA</td>
+<td>E</td>
+<td>F</td>
+<td>G</td>
+</tr>
+<tr>
+<td>E</td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>D</td>
+<td>NA</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>D</td>
+<td>D</td>
+<td>E</td>
+<td>D</td>
+<td>E</td>
+<td>NA</td>
+<td>G</td>
+</tr>
+<tr>
+<td>G</td>
+<td>D</td>
+<td>D</td>
+<td>F</td>
+<td>D</td>
+<td>F</td>
+<td>F</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<p>iteration  5</p>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0.0</td>
+<td>12.0</td>
+<td>8.0</td>
+<td>13.0</td>
+<td>14.0</td>
+<td>16.0</td>
+<td>17.0</td>
+</tr>
+<tr>
+<td>B</td>
+<td>12.0</td>
+<td>0.0</td>
+<td>8.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>C</td>
+<td>8.0</td>
+<td>9.0</td>
+<td>0.0</td>
+<td>10.0</td>
+<td>6.0</td>
+<td>9.0</td>
+<td>11.0</td>
+</tr>
+<tr>
+<td>D</td>
+<td>13.0</td>
+<td>1.0</td>
+<td>9.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14.0</td>
+<td>5.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>F</td>
+<td>16.0</td>
+<td>4.0</td>
+<td>9.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>G</td>
+<td>17.0</td>
+<td>5.0</td>
+<td>11.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>2.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>NA</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>B</td>
+</tr>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>NA</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>B</td>
+<td>NA</td>
+<td>B</td>
+<td>E</td>
+<td>E</td>
+<td>E</td>
+</tr>
+<tr>
+<td>D</td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+<td>NA</td>
+<td>E</td>
+<td>F</td>
+<td>G</td>
+</tr>
+<tr>
+<td>E</td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>D</td>
+<td>NA</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>D</td>
+<td>D</td>
+<td>E</td>
+<td>D</td>
+<td>E</td>
+<td>NA</td>
+<td>G</td>
+</tr>
+<tr>
+<td>G</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>F</td>
+<td>F</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<p>iteration  6</p>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0.0</td>
+<td>12.0</td>
+<td>8.0</td>
+<td>13.0</td>
+<td>14.0</td>
+<td>16.0</td>
+<td>17.0</td>
+</tr>
+<tr>
+<td>B</td>
+<td>12.0</td>
+<td>0.0</td>
+<td>9.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>C</td>
+<td>8.0</td>
+<td>9.0</td>
+<td>0.0</td>
+<td>10.0</td>
+<td>6.0</td>
+<td>9.0</td>
+<td>11.0</td>
+</tr>
+<tr>
+<td>D</td>
+<td>13.0</td>
+<td>1.0</td>
+<td>9.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14.0</td>
+<td>5.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>F</td>
+<td>16.0</td>
+<td>4.0</td>
+<td>9.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>G</td>
+<td>17.0</td>
+<td>5.0</td>
+<td>11.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>2.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>NA</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>B</td>
+</tr>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>NA</td>
+<td>C</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>B</td>
+<td>NA</td>
+<td>B</td>
+<td>E</td>
+<td>E</td>
+<td>E</td>
+</tr>
+<tr>
+<td>D</td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+<td>NA</td>
+<td>E</td>
+<td>F</td>
+<td>G</td>
+</tr>
+<tr>
+<td>E</td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>D</td>
+<td>NA</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>D</td>
+<td>D</td>
+<td>E</td>
+<td>D</td>
+<td>E</td>
+<td>NA</td>
+<td>G</td>
+</tr>
+<tr>
+<td>G</td>
+<td>D</td>
+<td>D</td>
+<td>F</td>
+<td>D</td>
+<td>F</td>
+<td>F</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<p>iteration  7</p>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0.0</td>
+<td>12.0</td>
+<td>8.0</td>
+<td>13.0</td>
+<td>14.0</td>
+<td>16.0</td>
+<td>17.0</td>
+</tr>
+<tr>
+<td>B</td>
+<td>12.0</td>
+<td>0.0</td>
+<td>9.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>C</td>
+<td>8.0</td>
+<td>9.0</td>
+<td>0.0</td>
+<td>10.0</td>
+<td>6.0</td>
+<td>9.0</td>
+<td>11.0</td>
+</tr>
+<tr>
+<td>D</td>
+<td>13.0</td>
+<td>1.0</td>
+<td>10.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14.0</td>
+<td>5.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>F</td>
+<td>16.0</td>
+<td>4.0</td>
+<td>9.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>G</td>
+<td>17.0</td>
+<td>5.0</td>
+<td>11.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>2.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>NA</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>C</td>
+<td>B</td>
+<td>B</td>
+</tr>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>NA</td>
+<td>C</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>B</td>
+<td>NA</td>
+<td>B</td>
+<td>E</td>
+<td>E</td>
+<td>E</td>
+</tr>
+<tr>
+<td>D</td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+<td>NA</td>
+<td>E</td>
+<td>F</td>
+<td>G</td>
+</tr>
+<tr>
+<td>E</td>
+<td>C</td>
+<td>D</td>
+<td>C</td>
+<td>D</td>
+<td>NA</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>D</td>
+<td>D</td>
+<td>E</td>
+<td>D</td>
+<td>E</td>
+<td>NA</td>
+<td>G</td>
+</tr>
+<tr>
+<td>G</td>
+<td>D</td>
+<td>D</td>
+<td>F</td>
+<td>D</td>
+<td>F</td>
+<td>F</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="question-6">Question 6</h2>
+<ol>
+<li>
+<p>(a)<br>
+d-&gt;a-&gt;c-&gt;e<br>
+d-&gt;c-&gt;e<br>
+d-&gt;b-&gt;e<br>
+d-&gt;e<br>
+(b)<br>
+d-&gt;a<br>
+d-&gt;c-&gt;a<br>
+d-&gt;e-&gt;c-&gt;a<br>
+d-&gt;b-&gt;e-&gt;c-&gt;a</p>
+</li>
+<li></li>
+</ol>
+<p>Link State: Each node stores a detailed map to entire network topology</p>
+<p>Distance Vector: Each node stores distance tp destinationa and neighbors
+distance to destination.</p>
+<p>Path Vector: The alorigthm advertise paths to different destination network prefixes. So each node contains path vector to destination. The entire path information is in the node.</p>
+<p>stored states: Distance Vector &lt; Path Vector &lt; Link State</p>
+
+</body>
+</html>

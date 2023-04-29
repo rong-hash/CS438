@@ -37,10 +37,37 @@ Path from X to *
 
 ## Question 2
 
+**default means any other conditions**
+
 *Answer 1*: 
 
+Match | Action
+--- | ---
+IP src 10.0.1.2 <br> IP src 10.3.0.5 <br> IP dest 10.2.0.3 | forward(3)
+IP src 10.0.1.2 <br> IP src 10.3.0.5 <br> IP dest 10.2.0.4 | forward(4)
+default | DROP
 
-    
+*Answer 2*: 
+Match | Action
+--- | ---
+TCPsrcPort = * <br> TCPdestPort = * <br> IP dest 10.2.0.3 | forward(3)
+TCPsrcPort = * <br> TCPdestPort = * <br> IP dest 10.2.0.4 | forward(4)
+default | DROP
+
+**\* means anything**
+
+*Answer 3*: 
+Match | Action
+--- | ---
+IP dest 10.2.0.4 | forward(4)
+default | DROP
+
+*Answer 4*: 
+Match | Action
+--- | ---
+TCPsrcport = undefined <br> TCPdestport = undefined<br> IP src 10.3.0.6 <br> IP dest 10.2.0.3 | forward(3)
+default | DROP
+
 ## Question 3
 *Question*
 

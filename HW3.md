@@ -321,21 +321,15 @@ G |   D|   D|   F|   D|   F|   F|NA  |
         d->c->e     
         d->b->e         
         d->e    
-    (b)    
-        d->a    
-        d->c->a     
-        d->e->c->a      
-        d->b->e->c->a   
+    (b) The path could be any path from d to a because it is controlled by a center plane, and it will give an optimal path. Note all path means simple path, without cycle.
         
-2.  
-Link State: Each node stores a detailed map to entire network topology   
+2.  Link State: In link state algorithms, each node maintains more state than distance vector algorithms. Each node has a local view of the network topology by maintaining a database containing information about the links and their costs for all other nodes in the network. The node uses this information to build a shortest path tree and calculate the optimal path to every other node. The link state algorithm uses Dijkstra's algorithm for routing, and Open Shortest Path First (OSPF) is a popular example. Nodes exchange link state advertisements (LSAs) to share information about their directly connected links and their costs, allowing them to build and update their local view of the network topology.
 
-Distance Vector: Each node stores distance tp destinationa and neighbors 
-distance to destination. 
+    Distance Vector: In distance vector algorithms, each node maintains a routing table containing the distance (cost) to reach every other node in the network, along with the next hop information. The node does not maintain any knowledge about the entire network topology. The distance vector algorithm uses the Bellman-Ford algorithm for routing, and Routing Information Protocol (RIP) is a popular example. Nodes periodically exchange routing table updates with their direct neighbors, allowing them to learn about changes in the network.
 
-Path Vector: The alorigthm advertise paths to different destination network prefixes. So each node contains path vector to destination. The entire path information is in the node. 
+    Path Vector: In path vector algorithms, each node maintains even more state than link state algorithms. Each node maintains a routing table containing the complete path (list of nodes traversed) to reach every other node in the network. The path vector algorithm is designed to prevent routing loops and can be seen as an extension of the distance vector algorithm with additional information. Border Gateway Protocol (BGP) is a popular example of a path vector protocol. Nodes exchange path information with their neighbors, including the sequence of autonomous systems (ASes) traversed to reach a specific destination. This approach allows nodes to apply complex policies and filtering based on the AS path information, which contributes to the increased state maintained by each node.
 
-stored states: Distance Vector < Path Vector < Link State
+    stored states: Distance Vector < Link State < Path Vector
 
 
 

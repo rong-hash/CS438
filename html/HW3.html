@@ -204,8 +204,8 @@ finalrtt
 <td>3</td>
 <td>10</td>
 <td>4</td>
-<td>10</td>
-<td>4</td>
+<td>12</td>
+<td>3</td>
 <td>8</td>
 <td>6</td>
 </tr>
@@ -215,8 +215,8 @@ finalrtt
 <td>4</td>
 <td>12</td>
 <td>4</td>
-<td>12</td>
-<td>4</td>
+<td>10</td>
+<td>5</td>
 <td>11</td>
 <td>4</td>
 </tr>
@@ -1751,19 +1751,21 @@ Host gets the IP address from sever.</li>
 <hr>
 <h2 id="question-6">Question 6</h2>
 <ol>
-<li>(a)<br>
+<li>
+<p>(a)<br>
 d-&gt;a-&gt;c-&gt;e<br>
 d-&gt;c-&gt;e<br>
+d-&gt;b-&gt;e<br>
 d-&gt;e<br>
-(b)<br>
-d-&gt;a</li>
-<li></li>
+(b) The path could be any path from d to a because it is controlled by a center plane, and it will give an optimal path. Note all path means simple path, without cycle.</p>
+</li>
+<li>
+<p>Link State: In link state algorithms, each node maintains more state than distance vector algorithms. Each node has a local view of the network topology by maintaining a database containing information about the links and their costs for all other nodes in the network. The node uses this information to build a shortest path tree and calculate the optimal path to every other node. The link state algorithm uses Dijkstra's algorithm for routing, and Open Shortest Path First (OSPF) is a popular example. Nodes exchange link state advertisements (LSAs) to share information about their directly connected links and their costs, allowing them to build and update their local view of the network topology.</p>
+<p>Distance Vector: In distance vector algorithms, each node maintains a routing table containing the distance (cost) to reach every other node in the network, along with the next hop information. The node does not maintain any knowledge about the entire network topology. The distance vector algorithm uses the Bellman-Ford algorithm for routing, and Routing Information Protocol (RIP) is a popular example. Nodes periodically exchange routing table updates with their direct neighbors, allowing them to learn about changes in the network.</p>
+<p>Path Vector: In path vector algorithms, each node maintains even more state than link state algorithms. Each node maintains a routing table containing the complete path (list of nodes traversed) to reach every other node in the network. The path vector algorithm is designed to prevent routing loops and can be seen as an extension of the distance vector algorithm with additional information. Border Gateway Protocol (BGP) is a popular example of a path vector protocol. Nodes exchange path information with their neighbors, including the sequence of autonomous systems (ASes) traversed to reach a specific destination. This approach allows nodes to apply complex policies and filtering based on the AS path information, which contributes to the increased state maintained by each node.</p>
+<p>stored states: Distance Vector &lt; Link State &lt; Path Vector</p>
+</li>
 </ol>
-<p>Link State: Each node stores the cost to other edges. The needed space is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span>.<br>
-Distance Vector: Each node stores distance vector to other nodes. Distance vector is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span>, total cost is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>V</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>
-Path Vector: Advertise paths to different destination network prefixes.
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>V</mi><mn>3</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V^3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
-<p>space complexity: Link State &lt; Distance Vector &lt; Path Vector</p>
 
         <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
         

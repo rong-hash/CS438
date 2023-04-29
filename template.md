@@ -46,9 +46,3 @@
 
 *Answer*: 
 
-## Question 1
-*Question*
-
-
-
-*Answer*: 

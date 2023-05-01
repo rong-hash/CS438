@@ -84,6 +84,13 @@ ARP | 0:0:0:0:0:5 | 0:0:0:0:0:4 | 192.168.0.2 | 192.168.0.1 | N/A | N/A | N/A | 
 TCP | 0:0:0:0:0:1 | 0:0:0:0:0:3 | 10.0.0.2 | 192.168.0.2 | 54321 | 1234 | SYN | A | A-S
 TCP | 0:0:0:0:0:1 | 0:0:0:0:0:3 | 10.0.0.2 | 192.168.0.2 | 54321 | 1234 | SYN | S | S-R
 TCP | 0:0:0:0:0:4 | 0:0:0:0:0:5 | 10.0.0.2 | 192.168.0.2 | 54321 | 1234 | SYN | R | R-C
+TCP | 0:0:0:0:0:5 | 0:0:0:0:0:4 | 192.168.0.2 | 10.0.0.2 | 1234 | 54321 | SYN ACK | C | C-R
+TCP | 0:0:0:0:0:3 | 0:0:0:0:0:1 | 192.168.0.2 | 10.0.0.2 | 1234 | 54321 | SYN ACK | R | R-S
+TCP | 0:0:0:0:0:3 | 0:0:0:0:0:1 | 192.168.0.2 | 10.0.0.2 | 1234 | 54321 | SYN ACK | S | S-A
+TCP | 0:0:0:0:0:1 | 0:0:0:0:0:3 | 10.0.0.2 | 192.168.0.2 | 54321 | 1234 | ACK | A | A-S
+TCP | 0:0:0:0:0:1 | 0:0:0:0:0:3 | 10.0.0.2 | 192.168.0.2 | 54321 | 1234 | ACK | S | S-R
+TCP | 0:0:0:0:0:4 | 0:0:0:0:0:5 | 10.0.0.2 | 192.168.0.2 | 54321 | 1234 | ACK | R | R-C
+
    
 ## Question 4
 *Question*
@@ -126,8 +133,7 @@ Need to add 1 bit.
     Advantage: Most of the time, two-dimensional parity can find the location of the error bit if only 1 bit changes. It's also more stable than one parity bit because we need to change at least 4 bits to make the error unable to be detected.     
     Disadvantage: It takes more space to store parity bit. 
 
-2.  **Need to check**
-
+1.  
     (a) 11110011 10001001 00000000 / 1 00100110 
 
     |step | quotien| remainder|
@@ -175,8 +181,7 @@ Need to add 1 bit.
     (14) | 1  |   001100100
     Remainder is not zero and error will be detected. 
 
-3.  **Need to check**
-
+2.  
     7EFF + AAC8 = 1 29C7    --> roll back bit 1
 
     1 + 29C7 + EC05 = 1 15CD    --> roll back bit: 1

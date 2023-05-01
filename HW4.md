@@ -1,4 +1,5 @@
 # HW4
+We have discussed with zhengyuz5 and cmo8
 
 ## Question 1
 *Answer 1*: 
@@ -93,7 +94,7 @@ TCP | 0:0:0:0:0:4 | 0:0:0:0:0:5 | 10.0.0.2 | 192.168.0.2 | 54321 | 1234 | SYN | 
 
 1. (a) There are nine 1 bits so the priority bit should be one. 
 Need to add 1 bit.  
-    (b) Need to add 9 bits.     
+    (b) Need to add 9 bits. If we ignore the bit at the right corner, we need to add 8 bits.     
     (c) 
     | | col 1| col 2| col 3| col 4| P|
     |---|--|--|--|--|--|
@@ -105,7 +106,7 @@ Need to add 1 bit.
 
     (d)
 
-    Example: 
+    Example (4 changes): 
     | | col 1| col 2| col 3| col 4| P|
     |---|--|--|--|--|--|
     |row 1|1|1|1|1| 0| 
@@ -117,40 +118,42 @@ Need to add 1 bit.
     Bit at row 3 col 2 flips. 
     This will affect two parity bit so the parity bit for row 1 and parity bit for col 1 also flips. 
     Bit at right corner also needs to flip.  
+    At least we need to change 4 bits.  
+    If we ignore the bit at the left most corner, change for 3 bit may not be detected. And if we don't ignore it, we need at least 4 changes. 
 
 
     (e) 
-    Advantage: Most of the time, two-dimensional parity can find the location of the error bit. It's also more stable than one parity bit.     
+    Advantage: Most of the time, two-dimensional parity can find the location of the error bit if only 1 bit changes. It's also more stable than one parity bit because we need to change at least 4 bits to make the error unable to be detected.     
     Disadvantage: It takes more space to store parity bit. 
 
 2.  **Need to check**
 
     (a) 11110011 10001001 00000000 / 1 00100110 
 
-    |step | quotient| remainder|
+    |step | quotien| remainder|
     |-----|---------|-------|
-    |(0) |  1|  011000001000100100000000 
-    |(1)  | 1 |   01010010000100100000000    
-    |(2)  | 1 |     0011011100100100000000   
-    |(3)  | 0 |       011011100100100000000  
-    |(4)  | 1 |         01001111100100000000 
-    |(5)  | 1 |           0000110000100000000    
-    |(6)  | 0 |             000110000100000000   
-    |(7)  | 0 |               00110000100000000  
-    |(8)  | 0 |                 0110000100000000 
-    |(9)  | 1 |                   010100010000000    
-    |(10)   | 1 |                     00110001000000    
-    |(11)   | 0 |                       0110001000000   
-    |(12)   | 1 |                         010101110000  
-    |(13)   | 1 |                           00111101000 
-    |(14)   | 0 |                             0111101000    
-    |(15)   | 1 |                               011001110   
+    |(0) |  1|  11000001000100100000000 
+    |(1)  | 1 |   1010010000100100000000    
+    |(2)  | 1 |     011011100100100000000   
+    |(3)  | 0 |       11011100100100000000  
+    |(4)  | 1 |         1001111100100000000 
+    |(5)  | 1 |           000110000100000000    
+    |(6)  | 0 |             00110000100000000   
+    |(7)  | 0 |               0110000100000000  
+    |(8)  | 0 |                 110000100000000 
+    |(9)  | 1 |                   10100010000000    
+    |(10)   | 1 |                     0110001000000    
+    |(11)   | 0 |                       110001000000   
+    |(12)   | 1 |                         10101110000  
+    |(13)   | 1 |                           0111101000 
+    |(14)   | 0 |                             111101000    
+    |(15)   | 1 |                               11001110   
 
     CRC bit is 11001110. 
 
     (b) result is 11110011 10001001 11001110. 
 
-    (c) Divide the result by 100100110. The remainder should be zero. If it's not zero, the error will be detected. 
+    (c) Divide the result by 100100110 (generator) using modulo 2 division. The remainder should be zero. If it's not zero, the error will be detected. 
 
     (d) 01110011 10001001 11001110 / 1 00100110
     |step | quotient| remainder|
@@ -168,17 +171,21 @@ Need to add 1 bit.
     (10)  | 0          |            0001100001110
     (11)  | 0        |                001100001110
     (12) |  0        |                  01100001110
+    (13) | 1 |   0101000010
+    (14) | 1  |   001100100
     Remainder is not zero and error will be detected. 
 
 3.  **Need to check**
 
-    7EFF + AAC8 = 1 29C7    --> roll back: 2928 
+    7EFF + AAC8 = 1 29C7    --> roll back bit 1
 
-    2928 + EC05 = 1 152D    --> roll back: 152E
+    1 + 29C7 + EC05 = 1 15CD    --> roll back bit: 1
 
-    not(152E)  = EAD1
+    15CD + 1 = 15CE
 
-    check sum is EAD1
+    not(15CE)  = EA31
+
+    check sum is EA31
 
 
 
@@ -192,15 +199,12 @@ Need to add 1 bit.
 2. 
     $p_{1} =1 - 1/2^{1-1} = 0$  
     $p_{2} =(1/2^{1-1}) * (1-1/2^{2-1})  = 1/2$     
-    $p_{3} =(1/2^{1-1}) * (1/2^{2-1}) * (1-1/2^{3-1}) = 3/8$
+    $p_{3} =(1/2^{1-1}) * (1/2^{2-1}) * (1-1/2^{3-1}) = 3/8$    
     $p_{4} =(1/2^{1-1}) * (1/2^{2-1}) * (1/2^{3-1}) * (1 - 1/2^{4-1})= 7/64$
 
-3.  **Need to check**
-     
-    2 collisions happen for A and 3 collisions happen for B. 
-    A waits for slot 0 to 3 and B waits for slot 0 to 7. 
-    A waits i slot and B should wait from i+1 to 7 slot.    
-    $P = 1/4 *(7/8+6/8+5/8+4/8) = 11/16$
+3.  
+    In the 1st round, A and B choose slot 0. Then A successes and B fails. A sends with slot 0 and B sends with slot 1 and collision happens again. Then A will wait from slot 0 to slot 1 and B wait from slot 0 to slot 3.    
+    $P = 1/2 *(2/4+3/4) = 5/8$
 
 
 
@@ -210,18 +214,19 @@ Need to add 1 bit.
 
 
 *Answer*:   
-1. F(A)B, E(A)B, A(B)C, B(C)D
-2. **Need to check** No. F and E can both send message to A though B at the same time and collision may occur. 
-3. ACK is necessary. Packet can losy and ACK is needed to tell the sender that the node have recieved the packet. If the sender haven't recieved packet for some time, it will resend packet. 
+1. F-B, E-B, A-C, B-D
+2. No. If F and E send RTS to A at the same time, collision will happen.    
+3. ACK is necessary. It can tell other terminals that A has released the occupied channel and A's channel is now available. 
+Also, packet can lost and ACK is needed to tell the sender that the node have recieved the packet. If the sender haven't recieved packet for some time, it will resend packet. 
 4. 
     (a)$P_{Rx} = {G_{Tx}G_{Rx} \lambda^{2} \over (4\pi d)^{2}} * P_{Tx}$
     So, $P_{Rx}\varpropto {1 \over d^{2}}$     
     Assume the power at D is P. 
     For d = 3, $SINR = P/(P/9) = 9$    
-    (b) **Need to check** The noise at D is P/18. 
-    $SINR = P/(P/18) = 18$
+    (b) The noise at D is P/18. 
+    $SINR = P/(P/18 + P/9) = 6$
 5.  
     (a) BPSK should be used. When SNR = 12dB, only BPSK has BER less than 
     $10^{-6}$   
     (b) 1 bit per second. It's 10 Mbps.     
-    (c) **Need to check** $P = 1 - (1-10^{-8})^{1500} = 0.0183$
+    (c) $P = 1 - (1-10^{-8})^{1500 * 8} =1.2e-4$

@@ -176,7 +176,7 @@ ID space is ${0,1,2,...,255}$, from 0 to 255.
         
     (b) 5 times.
 6.  
-![avatar](hw2-img.png)  
+![avatar](img/hw2-img.png)  
 As it's shown by the figure, each key is assigned to the ones that's symmetric to it and that's how the maximum number of messages is minimized. At most 4 times of search is needed.   
 The followings are the reasons. 
 For each node, it can access to its successor and cord. The maximum number of search will cover all the nodes to reach the target key. Begin from one node and it can have direct access its successor, there are six nodes left that it cannot access, each node can have access to two other nodes. So searching the left six nodes require at most $6/2 = 3$ times, if everything is optimized. 
